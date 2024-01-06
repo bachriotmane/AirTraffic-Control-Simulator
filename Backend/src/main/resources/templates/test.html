@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+
+<body onload="getAirportsData()">
+<div>
+    <form onsubmit="addAirport(); return false;">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" required>
+        <br>
+        <label for="nbrPiste">Nombre de Piste:</label>
+        <input type="number" id="nbrPiste" required>
+        <br>
+        <label for="nbrPlaceSol">Nombre de Place Sol:</label>
+        <input type="number" id="nbrPlaceSol" required>
+        <br>
+        <label for="tempsAccessPiste">Temps d'Accès Piste:</label>
+        <input type="number" id="tempsAccessPiste" required>
+        <br>
+        <label for="delaiAntCollision">Delai Ant Collision:</label>
+        <input type="number" id="delaiAntCollision" required>
+        <br>
+        <label for="tempsDecolage">Temps de Décollage:</label>
+        <input type="number" id="tempsDecolage" required>
+        <br>
+        <label for="durreeBoucleDattent">Durée Boucle d'Attente:</label>
+        <input type="number" id="durreeBoucleDattent" required>
+        <br>
+        <label for="delaiAuSol">Delai au Sol:</label>
+        <input type="number" id="delaiAuSol" required>
+        <br>
+        <label for="working">Working:</label>
+        <input type="checkbox" id="working">
+        <br>
+        <button type="submit">Ajouter Aeroport</button>
+    </form>
+
+    <table border="1" id="airportTable">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Nombre de Piste</th>
+            <th>Temps d'Accès Piste</th>
+            <th>Delai Ant Collision</th>
+            <th>Temps de Décollage</th>
+            <th>Durée Boucle d'Attente</th>
+            <th>Delai au Sol</th>
+            <th>Working</th>
+        </tr>
+        </thead>
+        <tbody id="airportTableBody">
+        <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function getAirportsData() {
+        fetch("/api/airoports")
+            .then(response => response.json())
+            .then(data => {
+                updateTable(data._embedded.airoports);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function updateTable(airports) {
+        const tableBody = document.getElementById("airportTableBody");
+        tableBody.innerHTML = ""; // Clear existing rows
+
+        airports.forEach(airport => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${airport.nom}</td>
+                <td>${airport.nbrPiste}</td>
+                <td>${airport.tempsAccessPiste}</td>
+                <td>${airport.delaiAntCollision}</td>
+                <td>${airport.tempsDecolage}</td>
+                <td>${airport.durreeBoucleDattent}</td>
+                <td>${airport.delaiAuSol}</td>
+                <td>${airport.working}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function addAirport() {
+        const nom = document.getElementById("nom").value;
+        const nbrPiste = document.getElementById("nbrPiste").value;
+        const nbrPlaceSol = document.getElementById("nbrPlaceSol").value;
+        const tempsAccessPiste = document.getElementById("tempsAccessPiste").value;
+        const delaiAntCollision = document.getElementById("delaiAntCollision").value;
+        const tempsDecolage = document.getElementById("tempsDecolage").value;
+        const durreeBoucleDattent = document.getElementById("durreeBoucleDattent").value;
+        const delaiAuSol = document.getElementById("delaiAuSol").value;
+        const working = document.getElementById("working").checked;
+
+        const newAirport = {
+            nom: nom,
+            nbrPiste: nbrPiste,
+            nbrPlaceSol: nbrPlaceSol,
+            tempsAccessPiste: tempsAccessPiste,
+            delaiAntCollision: delaiAntCollision,
+            tempsDecolage: tempsDecolage,
+            durreeBoucleDattent: durreeBoucleDattent,
+            delaiAuSol: delaiAuSol,
+            working: working,
+        };
+
+        fetch("/api/airoports", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newAirport),
+        })
+            .then(response => response.json())
+            .then(data => {
+                getAirportsData(); // Refresh the table with the updated data
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>

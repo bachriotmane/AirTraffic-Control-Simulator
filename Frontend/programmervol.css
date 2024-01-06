@@ -1,0 +1,60 @@
+.myDiv {
+      
+    color: black;
+    font-family: 'Arial', sans-serif;
+    background-image: url('assets/airport-image.jpg'); /* Replace 'airport-background.jpg' with the actual background image path */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 70%;
+
+  }
+
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 40%;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0;
+    font-size: 20px;
+  }
+
+  select,
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+    font-size: 20px;
+
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }

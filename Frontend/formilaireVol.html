@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>Flight Scheduler</title>
+  <link rel="stylesheet" href="programmervol.css">
+</head>
+
+<body>
+  <div class="myDiv">
+  <div class="container">
+    <div class="form-container">
+      <h1>Flight Scheduler</h1>
+      <label for="startAirport">Start Airport:</label>
+      <select id="startAirport" name="startAirport">
+      </select>
+
+      <label for="finalAirport">Final Airport:</label>
+      <select id="finalAirport" name="finalAirport"></select>
+
+      <label for="avion">Avion</label>
+      <select id="avion" name="avion"></select>
+
+      <label for="dateDepart">Departure Date:</label>
+      <input type="datetime-local" id="dateDepart" name="dateDepart">
+      
+      <label for="dateArrive">Arrival Date:</label>
+      <input type="datetime-local" id="dateArrive" name="dateArrive">
+
+      <button onclick="programFlight()">Program Flight</button>
+    </div>
+
+    
+  </div>
+</div>
+  <script src="programmervol.js"></script>
+</body>
+
+</html>

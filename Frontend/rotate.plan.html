@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+    
+</body>
+</html>
+<script>
+    function moveAndRotateElement(rotatingElement, centerX, centerY, angle, radius) {
+        // Calcul des nouvelles coordonnées sur la circonférence du cercle
+        const newX = centerX + radius * Math.cos(angle);
+        const newY = centerY + radius * Math.sin(angle);
+
+        // Calcul de l'angle de rotation de l'avion par rapport à la direction initiale
+        const rotationAngle = angle + Math.PI / 2; 
+        rotatingElement.style.transform = `translate(${newX}px, ${newY}px) rotate(${rotationAngle}rad)`;
+    }
+
+    function animateCircularMotion(rotatingElement, centerX, centerY, radius, speed) {
+        let angle = 0;
+        setInterval(() => {
+            angle += speed;
+            moveAndRotateElement(rotatingElement, centerX, centerY, angle, radius);
+        }, 16);
+    }
+
+    window.onload = function () {
+        var plane = document.createElement('img');
+
+        plane.src = "assets/airplane-last.png"; // Remplacez par le chemin de votre image d'avion
+        plane.id = "plane";
+        plane.width="80";
+        document.body.appendChild(plane);
+
+        const centerX = 80;
+        const centerY = 100;
+        const radius = 100; // Ajustez le rayon selon vos besoins
+
+        // Position initiale de l'avion
+        moveAndRotateElement(plane, centerX, centerY, 0, radius);
+
+        animateCircularMotion(plane, centerX, centerY, radius, 0.02); // Ajustez la vitesse selon vos besoins
+    };
+</script>
