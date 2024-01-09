@@ -36,7 +36,7 @@ To run this project, you need the following:
 - Integrated Development Environment (IDE) for Frontend
 
 ## Demo Video
-[Simulation video/lv_0_20240109150215.mp4]
+[Watch the Simulation Video](Simulation video/lv_0_20240109150215.mp4)
 
 Watch a demonstration of the Air Traffic Control Simulator in action! This video showcases the simulation process and highlights key features.
 
