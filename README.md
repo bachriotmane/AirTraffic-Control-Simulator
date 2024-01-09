@@ -30,7 +30,10 @@ Welcome to the Air Traffic Control Simulator project! This simulator provides a 
 To get started with the project, clone this repository and follow the instructions in the respective frontend and backend directories.
 
 ## How to Run
-Detailed instructions on how to run the frontend and backend can be found in their respective directories. Ensure you have the necessary dependencies installed.
+To run this project, you need the following:
+- MySQL Database
+- Java Development Kit (JDK)
+- Integrated Development Environment (IDE) for Frontend
 
 ## Demo Video
 [Simulation video/lv_0_20240109150215.mp4]
